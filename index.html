@@ -1,0 +1,1595 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FISIO ENARE 2026 • Plataforma Gratuita YouTube</title>
+  <style>
+    :root {
+      --bg-base: #eef6f8;
+      --bg-card: rgba(255, 255, 255, 0.72);
+      --bg-card-strong: rgba(255, 255, 255, 0.88);
+      --border-glass: rgba(255, 255, 255, 0.65);
+      --border-subtle: rgba(15, 42, 68, 0.10);
+      --text-main: #0f2a44;
+      --text-muted: #4b647d;
+      --navy: #0f2a44;
+      --blue: #0284c7;
+      --blue-soft: rgba(2, 132, 199, 0.12);
+      --emerald: #059669;
+      --emerald-bright: #10b981;
+      --emerald-soft: rgba(16, 185, 129, 0.14);
+      --amber: #d97706;
+      --amber-soft: rgba(245, 158, 11, 0.14);
+      --rose: #e11d48;
+      --rose-soft: rgba(225, 29, 72, 0.12);
+      --shadow-glass: 0 10px 30px rgba(15, 42, 68, 0.08);
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --radius-sm: 10px;
+    }
+
+    body.dark {
+      --bg-base: #07131f;
+      --bg-card: rgba(15, 34, 54, 0.72);
+      --bg-card-strong: rgba(18, 41, 64, 0.90);
+      --border-glass: rgba(56, 189, 248, 0.16);
+      --border-subtle: rgba(255, 255, 255, 0.09);
+      --text-main: #e6f2f8;
+      --text-muted: #93b0c8;
+      --navy: #38bdf8;
+      --blue: #38bdf8;
+      --blue-soft: rgba(56, 189, 248, 0.16);
+      --emerald: #10b981;
+      --emerald-bright: #34d399;
+      --emerald-soft: rgba(16, 185, 129, 0.18);
+      --amber: #fbbf24;
+      --amber-soft: rgba(251, 191, 36, 0.16);
+      --rose: #fb7185;
+      --rose-soft: rgba(251, 113, 133, 0.16);
+      --shadow-glass: 0 12px 34px rgba(0, 0, 0, 0.42);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+      background: var(--bg-base);
+      color: var(--text-main);
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+      line-height: 1.5;
+    }
+
+    /* Ambient Glassmorphism Orbs */
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(85px);
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.55;
+    }
+    .orb-1 { width: 380px; height: 380px; background: #0284c7; top: -90px; left: -80px; }
+    .orb-2 { width: 420px; height: 420px; background: #10b981; bottom: -110px; right: -90px; }
+    .orb-3 { width: 280px; height: 280px; background: #06b6d4; top: 42%; left: 48%; opacity: 0.25; }
+
+    /* Top Navbar */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: linear-gradient(135deg, rgba(11, 37, 64, 0.92), rgba(6, 78, 75, 0.90));
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+      color: #fff;
+      padding: 12px 18px;
+    }
+    .topbar-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .brand { display: flex; align-items: center; gap: 11px; }
+    .brand-badge {
+      background: linear-gradient(135deg, #10b981, #0284c7);
+      color: #fff;
+      font-weight: 800;
+      font-size: 12px;
+      letter-spacing: 0.6px;
+      padding: 8px 10px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);
+    }
+    .brand h1 { font-size: 16px; font-weight: 800; letter-spacing: -0.2px; }
+    .brand p { font-size: 11px; color: rgba(255, 255, 255, 0.78); }
+
+    .top-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .pill-stat {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      padding: 6px 11px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      color: #fff;
+    }
+    .btn-icon {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: #fff;
+      border-radius: 10px;
+      padding: 6px 10px;
+      font-size: 13px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .btn-icon:hover { background: rgba(255, 255, 255, 0.22); }
+
+    /* Navigation Tabs */
+    .nav-wrap {
+      position: relative;
+      z-index: 10;
+      max-width: 1180px;
+      margin: 14px auto 0;
+      padding: 0 16px;
+    }
+    .nav-tabs {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 6px;
+      background: var(--bg-card);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid var(--border-glass);
+      border-radius: 16px;
+      box-shadow: var(--shadow-glass);
+    }
+    .tab-btn {
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      padding: 9px 15px;
+      border-radius: 11px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+    .tab-btn.active {
+      background: linear-gradient(135deg, #0284c7, #059669);
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(2, 132, 199, 0.28);
+    }
+
+    /* Main Container */
+    .container {
+      position: relative;
+      z-index: 10;
+      max-width: 1180px;
+      margin: 16px auto 60px;
+      padding: 0 16px;
+    }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; animation: fadeIn 0.22s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* Glass Cards */
+    .glass-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-glass);
+      padding: 20px;
+      margin-bottom: 18px;
+    }
+
+    /* Hero Banner */
+    .hero-card {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      background: linear-gradient(135deg, var(--bg-card-strong), rgba(16, 185, 129, 0.10));
+    }
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: var(--emerald);
+      margin-bottom: 4px;
+    }
+    .hero-title { font-size: 24px; font-weight: 800; letter-spacing: -0.4px; }
+    .hero-sub { font-size: 13px; color: var(--text-muted); margin-top: 4px; max-width: 560px; }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #059669, #0284c7);
+      color: #fff;
+      border: none;
+      padding: 12px 18px;
+      border-radius: 13px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(5, 150, 105, 0.28);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-primary:hover { filter: brightness(1.06); }
+
+    .btn-outline {
+      background: var(--bg-card-strong);
+      color: var(--text-main);
+      border: 1px solid var(--border-subtle);
+      padding: 8px 13px;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .btn-outline:hover { border-color: var(--blue); color: var(--blue); }
+
+    /* KPI Grid */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+    .kpi-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-md);
+      padding: 16px 18px;
+      box-shadow: var(--shadow-glass);
+    }
+    .kpi-label { font-size: 11px; font-weight: 800; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.5px; }
+    .kpi-val { font-size: 28px; font-weight: 800; margin: 6px 0 2px; color: var(--text-main); }
+    .kpi-foot { font-size: 12px; color: var(--emerald); font-weight: 600; }
+
+    /* Focus Today Grid */
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+    .section-head h2 { font-size: 17px; font-weight: 800; }
+    select, input, textarea {
+      background: var(--bg-card-strong);
+      color: var(--text-main);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 8px 12px;
+      font-size: 13px;
+      font-family: inherit;
+    }
+
+    .focus-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 14px;
+    }
+    .lesson-card {
+      background: var(--bg-card-strong);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .lesson-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+    .area-tag {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--blue);
+      background: var(--blue-soft);
+      padding: 3px 9px;
+      border-radius: 999px;
+    }
+    .channel-badge {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--emerald);
+      background: var(--emerald-soft);
+      padding: 3px 9px;
+      border-radius: 999px;
+    }
+    .lesson-title { font-size: 14px; font-weight: 700; margin-top: 6px; }
+    .lesson-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      padding-top: 10px;
+      border-top: 1px solid var(--border-subtle);
+      flex-wrap: wrap;
+    }
+    .yt-link {
+      background: linear-gradient(135deg, #0284c7, #059669);
+      color: #fff;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 7px 12px;
+      border-radius: 9px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .yt-link:hover { filter: brightness(1.08); }
+
+    /* Charts */
+    .charts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 16px;
+    }
+    svg.chart-svg { width: 100%; height: 210px; display: block; }
+
+    /* Schedule Table / List */
+    .day-block {
+      background: var(--bg-card-strong);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      margin-bottom: 12px;
+    }
+    .day-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .day-name { font-weight: 800; font-size: 15px; color: var(--blue); }
+    .task-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      padding: 10px 0;
+      border-top: 1px solid var(--border-subtle);
+    }
+    .task-row:first-of-type { border-top: none; }
+    .task-left { display: flex; align-items: flex-start; gap: 10px; flex: 1; min-width: 220px; }
+    .task-left input[type="checkbox"] { width: 18px; height: 18px; margin-top: 3px; accent-color: #059669; cursor: pointer; }
+    .done-text { text-decoration: line-through; opacity: 0.6; }
+    .q-logger { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+    .q-logger input { width: 62px; padding: 5px 8px; font-size: 12px; }
+
+    /* Quiz Engine */
+    .quiz-option {
+      display: block;
+      width: 100%;
+      text-align: left;
+      background: var(--bg-card-strong);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-main);
+      padding: 11px 14px;
+      border-radius: 11px;
+      margin-bottom: 8px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: 0.15s;
+    }
+    .quiz-option:hover { border-color: var(--blue); }
+    .quiz-option.correct { background: var(--emerald-soft); border-color: var(--emerald); font-weight: 700; }
+    .quiz-option.wrong { background: var(--rose-soft); border-color: var(--rose); }
+    .explanation-box {
+      margin-top: 10px;
+      padding: 12px 14px;
+      border-radius: 11px;
+      background: var(--blue-soft);
+      border-left: 4px solid var(--blue);
+      font-size: 13px;
+    }
+
+    /* Flashcards */
+    .flashcard-box {
+      background: linear-gradient(135deg, rgba(2, 132, 199, 0.14), rgba(16, 185, 129, 0.14));
+      border: 1px solid var(--border-glass);
+      border-radius: 18px;
+      padding: 28px 22px;
+      min-height: 200px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      cursor: pointer;
+      margin: 12px 0;
+    }
+
+    /* Toast */
+    #toast {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #0f2a44;
+      color: #fff;
+      padding: 11px 16px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 600;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+      z-index: 999;
+      display: none;
+    }
+
+    @media (max-width: 600px) {
+      .hero-title { font-size: 20px; }
+      .kpi-val { font-size: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
+  <!-- TOP BAR -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="brand-badge">FISIO</div>
+        <div>
+          <h1>FISIO ENARE 2026</h1>
+          <p>Rumo à Residência &amp; Concursos • 100% YouTube</p>
+        </div>
+      </div>
+      <div class="top-actions">
+        <span class="pill-stat" id="streakBadge">🔥 1 dia</span>
+        <span class="pill-stat" id="countdownBadge" onclick="editExamDate()" title="Clique para ajustar a data da prova">📅 180 dias ✎</span>
+        <button class="btn-icon" onclick="toggleTheme()" title="Alternar modo claro/escuro">🌓</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- NAVIGATION -->
+  <nav class="nav-wrap">
+    <div class="nav-tabs" id="navTabs">
+      <button class="tab-btn active" data-tab="dashboard">📊 Painel Geral</button>
+      <button class="tab-btn" data-tab="cronograma">📅 Cronograma 12 Semanas</button>
+      <button class="tab-btn" data-tab="questoes">📝 Questões &amp; Simulados</button>
+      <button class="tab-btn" data-tab="canais">▶️ Canais &amp; Links YT</button>
+      <button class="tab-btn" data-tab="revisoes">🧠 Revisões, Erros &amp; Flashcards</button>
+      <button class="tab-btn" data-tab="edital">📋 Edital Verticalizado</button>
+    </div>
+  </nav>
+
+  <main class="container">
+    <!-- TAB 1: DASHBOARD -->
+    <section id="tab-dashboard" class="tab-panel active">
+      <div class="glass-card hero-card">
+        <div>
+          <div class="eyebrow">PROJETO RESIDÊNCIA &amp; CONCURSOS • SEM CURSINHO PAGO</div>
+          <h2 class="hero-title">Painel de Alta Performance</h2>
+          <p class="hero-sub">Aulas gratuitas no YouTube com foco na Profa. Mara Ribeiro, resolução ativa de questões estilo ENARE e revisões espaçadas.</p>
+        </div>
+        <button class="btn-primary" onclick="registerStudyDay()">✅ Registrar Dia Estudado (+1 Streak)</button>
+      </div>
+
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-label">Edital Concluído</div>
+          <div class="kpi-val" id="kpiEditalPct">0%</div>
+          <div class="kpi-foot" id="kpiEditalSub">0 de 36 blocos concluídos</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Questões Resolvidas</div>
+          <div class="kpi-val" id="kpiQuestionsTotal">0</div>
+          <div class="kpi-foot">Meta do ciclo: 2.500 questões</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Aproveitamento Geral</div>
+          <div class="kpi-val" id="kpiAccuracyPct">0%</div>
+          <div class="kpi-foot" id="kpiAccuracySub">Alvo ENARE: &gt; 80% de precisão</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Média Simulados ENARE</div>
+          <div class="kpi-val" id="kpiSimAvg">--</div>
+          <div class="kpi-foot">Meta: 48+ / 60 questões</div>
+        </div>
+      </div>
+
+      <div class="glass-card">
+        <div class="section-head">
+          <div>
+            <h2 id="focusHeading">🟢 Foco de Hoje</h2>
+            <p style="font-size:12px; color:var(--text-muted);" id="focusSub">Baseado na Semana 1 • Clique em Assistir Aula para abrir direto no YouTube</p>
+          </div>
+          <div style="display:flex; align-items:center; gap:8px;">
+            <span style="font-size:12px; color:var(--text-muted);">Simular dia:</span>
+            <select id="daySimulator" onchange="renderFocusToday()">
+              <option value="auto">Hoje (Automático)</option>
+              <option value="1">Segunda-feira</option>
+              <option value="2">Terça-feira</option>
+              <option value="3">Quarta-feira</option>
+              <option value="4">Quinta-feira</option>
+              <option value="5">Sexta-feira</option>
+              <option value="6">Sábado (Simulado)</option>
+              <option value="0">Domingo (Descanso)</option>
+            </select>
+          </div>
+        </div>
+        <div class="focus-grid" id="focusGrid"></div>
+      </div>
+
+      <div class="charts-grid">
+        <div class="glass-card">
+          <div class="section-head">
+            <div>
+              <h2>Questões Resolvidas por Área</h2>
+              <p style="font-size:12px; color:var(--text-muted);">Equilíbrio entre Específicas da Fisioterapia, SUS e Português</p>
+            </div>
+          </div>
+          <svg id="areaChart" class="chart-svg" viewBox="0 0 460 210"></svg>
+        </div>
+        <div class="glass-card">
+          <div class="section-head">
+            <div>
+              <h2>Evolução nos Simulados (Semanas 1–12)</h2>
+              <p style="font-size:12px; color:var(--text-muted);">Acompanhe sua curva rumo aos 48+ acertos (80%)</p>
+            </div>
+          </div>
+          <svg id="simChart" class="chart-svg" viewBox="0 0 460 210"></svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: CRONOGRAMA 12 SEMANAS -->
+    <section id="tab-cronograma" class="tab-panel">
+      <div class="glass-card">
+        <div class="section-head">
+          <div>
+            <h2>📅 Cronograma de 12 Semanas • Foco Profa. Mara Ribeiro</h2>
+            <p style="font-size:12px; color:var(--text-muted);">Clique em "Assistir no YouTube ↗" para abrir fora do app. Aproveitamento &lt; 70% envia o tema ao Caderno de Erros.</p>
+          </div>
+          <select id="weekSelector" onchange="renderSchedule()"></select>
+        </div>
+        <div id="scheduleContainer"></div>
+      </div>
+    </section>
+
+    <!-- TAB 3: QUESTÕES & SIMULADOS -->
+    <section id="tab-questoes" class="tab-panel">
+      <div class="glass-card">
+        <div class="section-head">
+          <div>
+            <h2>📝 Motor Híbrido de Questões Estilo ENARE</h2>
+            <p style="font-size:12px; color:var(--text-muted);">Resolva questões comentadas de A a E ou gere mais questões no Gemini e cole abaixo.</p>
+          </div>
+          <div style="display:flex; gap:8px; flex-wrap:wrap;">
+            <select id="quizAreaFilter" onchange="renderQuiz()">
+              <option value="Todas">Todas as Áreas</option>
+              <option value="Respiratória & UTI">Respiratória &amp; UTI</option>
+              <option value="Neurofuncional">Neurofuncional</option>
+              <option value="Traumato-Ortopedia">Traumato-Ortopedia</option>
+              <option value="Saúde da Mulher">Saúde da Mulher</option>
+              <option value="Cardiovascular">Cardiovascular</option>
+              <option value="Pediatria & Neo">Pediatria &amp; Neo</option>
+              <option value="SUS & Saúde Pública">SUS &amp; Saúde Pública</option>
+              <option value="Ética & COFFITO">Ética &amp; COFFITO</option>
+              <option value="Português">Português</option>
+            </select>
+            <button class="btn-outline" onclick="copyGeminiPrompt()">✨ Copiar Prompt (+5 Questões no Gemini)</button>
+          </div>
+        </div>
+
+        <div id="quizBox"></div>
+
+        <details style="margin-top:16px; background:var(--bg-card-strong); padding:14px; border-radius:12px; border:1px solid var(--border-subtle);">
+          <summary style="font-weight:700; font-size:13px; cursor:pointer; color:var(--blue);">📥 Colar Novas Questões Geradas pelo Gemini</summary>
+          <p style="font-size:12px; color:var(--text-muted); margin:8px 0;">
+            Cole o texto gerado pelo Gemini seguindo o formato padrão (PERGUNTA | A | B | C | D | E | GABARITO | COMENTARIO) para adicionar ao seu banco interativo:
+          </p>
+          <textarea id="geminiPasteInput" rows="5" style="width:100%; margin-bottom:8px;" placeholder="AREA: Respiratória & UTI&#10;PERGUNTA: Enunciado da questão...&#10;A) Alternativa A&#10;B) Alternativa B&#10;C) Alternativa C&#10;D) Alternativa D&#10;E) Alternativa E&#10;GABARITO: B&#10;COMENTARIO: Explicação detalhada..."></textarea>
+          <button class="btn-primary" onclick="importGeminiQuestions()">➕ Adicionar Questões ao Quiz</button>
+        </details>
+      </div>
+
+      <div class="glass-card">
+        <div class="section-head">
+          <div>
+            <h2>🏆 Registro de Simulados Completos (Sábados)</h2>
+            <p style="font-size:12px; color:var(--text-muted);">Simulado padrão ENARE: 60 questões (40 Específicas + 10 SUS + 10 Português)</p>
+          </div>
+        </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:14px;">
+          <input type="text" id="simTitleInput" placeholder="Ex: Simulado ENARE 01 (AOCP)" style="flex:1; min-width:190px;" />
+          <input type="number" id="simScoreInput" placeholder="Acertos (0-60)" min="0" max="60" style="width:130px;" />
+          <button class="btn-primary" onclick="addSimulado()">Salvar Nota</button>
+        </div>
+        <div id="simHistoryList"></div>
+      </div>
+    </section>
+
+    <!-- TAB 4: CANAIS & LINKS YT -->
+    <section id="tab-canais" class="tab-panel">
+      <div class="glass-card">
+        <div class="section-head">
+          <div>
+            <h2>⭐ Suas Aulas &amp; Playlists Enviadas</h2>
+            <p style="font-size:12px; color:var(--text-muted);">Links já vinculados à Semana 1 e disponíveis para abrir direto no YouTube.</p>
+          </div>
+        </div>
+        <div id="customLinksList"></div>
+
+        <div style="margin-top:16px; padding-top:14px; border-top:1px solid var(--border-subtle);">
+          <h3 style="font-size:14px; margin-bottom:10px;">➕ Adicionar Novo Link do YouTube</h3>
+          <div style="display:flex; gap:8px; flex-wrap:wrap;">
+            <input type="text" id="newLinkTitle" placeholder="Título da aula ou playlist" style="flex:1; min-width:180px;" />
+            <input type="url" id="newLinkUrl" placeholder="https://youtube.com/..." style="flex:1; min-width:200px;" />
+            <select id="newLinkArea">
+              <option value="Respiratória & UTI">Respiratória &amp; UTI</option>
+              <option value="Neurofuncional">Neurofuncional</option>
+              <option value="Traumato-Ortopedia">Traumato-Ortopedia</option>
+              <option value="Saúde da Mulher">Saúde da Mulher</option>
+              <option value="SUS & Saúde Pública">SUS &amp; Saúde Pública</option>
+              <option value="Português">Português</option>
+            </select>
+            <button class="btn-primary" onclick="addCustomLink()">Salvar Link</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass-card">
+        <div class="section-head">
+          <div>
+            <h2>🎓 Canais Gratuitos Recomendados</h2>
+            <p style="font-size:12px; color:var(--text-muted);">Base principal do cronograma ENARE &amp; Concursos de Fisioterapia</p>
+          </div>
+        </div>
+        <div class="focus-grid">
+          <div class="lesson-card">
+            <div>
+              <span class="channel-badge">Canal Principal • Específicas</span>
+              <div class="lesson-title">Profa. Mara Ribeiro (Fisioterapia para Concursos)</div>
+              <p style="font-size:12px; color:var(--text-muted); margin-top:4px;">Aulas completas de Respiratória, UTI, Neuro, Traumato-Ortopedia, Saúde da Mulher, Ética/COFFITO e resoluções ENARE.</p>
+            </div>
+            <div class="lesson-actions">
+              <a class="yt-link" href="https://www.youtube.com/results?search_query=Profa+Mara+Ribeiro+Fisioterapia+Concursos+ENARE" target="_blank" rel="noopener noreferrer">Abrir Canal no YouTube ↗</a>
+            </div>
+          </div>
+          <div class="lesson-card">
+            <div>
+              <span class="channel-badge">SUS &amp; Legislação</span>
+              <div class="lesson-title">Profa. Natale Souza &amp; Prof. Rômulo Passos</div>
+              <p style="font-size:12px; color:var(--text-muted); margin-top:4px;">Lei 8.080/90, Lei 8.142/90, Decreto 7.508/11, PNAB, Redes de Atenção e História das Políticas de Saúde.</p>
+            </div>
+            <div class="lesson-actions">
+              <a class="yt-link" href="https://www.youtube.com/results?search_query=Natale+Souza+SUS+ENARE+Lei+8080" target="_blank" rel="noopener noreferrer">Abrir SUS no YouTube ↗</a>
+            </div>
+          </div>
+          <div class="lesson-card">
+            <div>
+              <span class="channel-badge">Língua Portuguesa</span>
+              <div class="lesson-title">Prof. Noslen &amp; Profa. Adriana Figueiredo</div>
+              <p style="font-size:12px; color:var(--text-muted); margin-top:4px;">Interpretação de texto, sintaxe, crase, concordância e foco nas bancas Instituto AOCP e FGV.</p>
+            </div>
+            <div class="lesson-actions">
+              <a class="yt-link" href="https://www.youtube.com/results?search_query=Professor+Noslen+Portugues+Concursos" target="_blank" rel="noopener noreferrer">Abrir Português no YouTube ↗</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 5: REVISÕES, ERROS & FLASHCARDS -->
+    <section id="tab-revisoes" class="tab-panel">
+      <div class="charts-grid">
+        <div class="glass-card">
+          <div class="section-head">
+            <div>
+              <h2>🧠 Flashcards de Alto Rendimento</h2>
+              <p style="font-size:12px; color:var(--text-muted);">Toque no cartão para revelar a resposta</p>
+            </div>
+            <span class="area-tag" id="fcCounter">1 / 12</span>
+          </div>
+          <div class="flashcard-box" onclick="flipFlashcard()">
+            <div class="eyebrow" id="fcArea">Respiratória &amp; UTI</div>
+            <div style="font-size:16px; font-weight:700; margin-top:8px;" id="fcText">Carregando...</div>
+            <div style="font-size:11px; color:var(--text-muted); margin-top:14px;" id="fcHint">👆 Toque para ver a resposta</div>
+          </div>
+          <div style="display:flex; justify-content:space-between; gap:8px; flex-wrap:wrap;">
+            <button class="btn-outline" onclick="prevFlashcard()">⬅️ Anterior</button>
+            <button class="btn-outline" onclick="flipFlashcard()">🔄 Virar Cartão</button>
+            <button class="btn-primary" onclick="nextFlashcard()">Próximo ➡️</button>
+          </div>
+        </div>
+
+        <div class="glass-card">
+          <div class="section-head">
+            <div>
+              <h2>⚠️ Caderno de Erros &amp; Revisões (24h / 7d / 15d / 30d)</h2>
+              <p style="font-size:12px; color:var(--text-muted);">Temas com &lt; 70% de acerto e questões erradas aparecem aqui automaticamente</p>
+            </div>
+          </div>
+          <div style="display:flex; gap:8px; margin-bottom:12px;">
+            <input type="text" id="manualErrorInput" placeholder="Anotar dificuldade ou bizu para revisar..." style="flex:1;" />
+            <button class="btn-primary" onclick="addManualError()">+ Adicionar</button>
+          </div>
+          <div id="errorList"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 6: EDITAL VERTICALIZADO -->
+    <section id="tab-edital" class="tab-panel">
+      <div class="glass-card">
+        <div class="section-head">
+          <div>
+            <h2>📋 Edital Verticalizado • ENARE &amp; Concursos</h2>
+            <p style="font-size:12px; color:var(--text-muted);">Marque cada etapa concluída por tópico</p>
+          </div>
+          <button class="btn-outline" onclick="exportBackup()">📦 Exportar Backup (.json)</button>
+        </div>
+        <div id="editalList"></div>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast"></div>
+
+  <script>
+    const DEFAULT_STATE = {
+      dark: false,
+      streak: 1,
+      lastStudyDate: "",
+      examDate: "2026-10-18",
+      completedTasks: {},
+      taskStats: {},
+      simulados: [
+        { title: "Simulado Diagnóstico Inicial", score: 34 }
+      ],
+      customLinks: [
+        {
+          id: "yt1",
+          title: "Aula Especial ENARE / Fisioterapia (Link Enviado #1)",
+          area: "Respiratória & UTI",
+          channel: "★ Seu Link YT",
+          url: "https://youtu.be/NIMt1OsnSIY?si=WOgyJfnyrHQ3hw9i"
+        },
+        {
+          id: "yt2",
+          title: "Playlist Completa Fisioterapia Concursos (Link Enviado #2)",
+          area: "Neurofuncional",
+          channel: "★ Seu Link YT",
+          url: "https://youtube.com/playlist?list=PLp1_ZnQhcROBTt5FeBAC0tUnYvo06_O-t&si=J8hFLvfVcK0kvUMu"
+        },
+        {
+          id: "yt3",
+          title: "Aulão ao Vivo Revisão ENARE (Link Enviado #3)",
+          area: "Traumato-Ortopedia",
+          channel: "★ Seu Link YT",
+          url: "https://www.youtube.com/live/U02l_06vt2E?si=5HBzVQblNVgDbSgW"
+        },
+        {
+          id: "yt4",
+          title: "Live Resolução de Questões Comentadas (Link Enviado #4)",
+          area: "SUS & Saúde Pública",
+          channel: "★ Seu Link YT",
+          url: "https://www.youtube.com/live/WPk4BCRBQwU?si=0EMj1nLSv_nAzHoc"
+        }
+      ],
+      errors: [
+        { id: "err1", topic: "Gasometria Arterial e Distúrbios Ácido-Básicos", cycle: "Revisão 24h", done: false },
+        { id: "err2", topic: "Lei 8.080/90 — Princípios e Diretrizes do SUS", cycle: "Revisão 7d", done: false }
+      ],
+      editalChecked: {},
+      customQuestions: []
+    };
+
+    let state = loadState();
+
+    function loadState() {
+      try {
+        const raw = localStorage.getItem("fisio_enare_glass_v1");
+        if (!raw) return JSON.parse(JSON.stringify(DEFAULT_STATE));
+        return Object.assign(JSON.parse(JSON.stringify(DEFAULT_STATE)), JSON.parse(raw));
+      } catch (e) {
+        return JSON.parse(JSON.stringify(DEFAULT_STATE));
+      }
+    }
+
+    function saveState() {
+      try {
+        localStorage.setItem("fisio_enare_glass_v1", JSON.stringify(state));
+      } catch (e) {}
+      updateKPIs();
+      renderCharts();
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById("toast");
+      t.textContent = msg;
+      t.style.display = "block";
+      clearTimeout(window._toastTimer);
+      window._toastTimer = setTimeout(() => { t.style.display = "none"; }, 2800);
+    }
+
+    /* 12 WEEKS CURRICULUM FOCUSED ON PROFA. MARA RIBEIRO */
+    const WEEK_TEMPLATES = [
+      {
+        week: 1,
+        theme: "Base Estratégica + Seus Links Enviados",
+        days: {
+          1: [
+            { id: "w1d1a", area: "Respiratória & UTI", title: "Aula Especial ENARE / Fisioterapia (Link #1)", channel: "★ Seu Link YT", qMeta: 20, url: "https://youtu.be/NIMt1OsnSIY?si=WOgyJfnyrHQ3hw9i" },
+            { id: "w1d1b", area: "SUS & Saúde Pública", title: "Lei 8.080/90 e Princípios do SUS", channel: "Profa. Natale Souza", qMeta: 15, url: "https://www.youtube.com/results?search_query=Profa+Natale+Souza+Lei+8080+ENARE" }
+          ],
+          2: [
+            { id: "w1d2a", area: "Neurofuncional", title: "Playlist Completa Fisioterapia Concursos (Link #2)", channel: "★ Seu Link YT", qMeta: 20, url: "https://youtube.com/playlist?list=PLp1_ZnQhcROBTt5FeBAC0tUnYvo06_O-t&si=J8hFLvfVcK0kvUMu" },
+            { id: "w1d2b", area: "Português", title: "Interpretação de Textos e Tipologia (Banca AOCP/FGV)", channel: "Prof. Noslen", qMeta: 15, url: "https://www.youtube.com/results?search_query=Professor+Noslen+Interpretacao+de+Texto+Concursos" }
+          ],
+          3: [
+            { id: "w1d3a", area: "Traumato-Ortopedia", title: "Aulão ao Vivo Revisão ENARE (Link #3)", channel: "★ Seu Link YT", qMeta: 25, url: "https://www.youtube.com/live/U02l_06vt2E?si=5HBzVQblNVgDbSgW" },
+            { id: "w1d3b", area: "Ética & COFFITO", title: "Resolução COFFITO 424/2013 — Código de Ética", channel: "Profa. Mara Ribeiro", qMeta: 15, url: "https://www.youtube.com/results?search_query=Profa+Mara+Ribeiro+Codigo+de+Etica+COFFITO+424" }
+          ],
+          4: [
+            { id: "w1d4a", area: "SUS & Saúde Pública", title: "Live Resolução de Questões Comentadas (Link #4)", channel: "★ Seu Link YT", qMeta: 20, url: "https://www.youtube.com/live/WPk4BCRBQwU?si=0EMj1nLSv_nAzHoc" },
+            { id: "w1d4b", area: "Cardiovascular", title: "Reabilitação Cardíaca Fases I a IV", channel: "Profa. Mara Ribeiro", qMeta: 15, url: "https://www.youtube.com/results?search_query=Profa+Mara+Ribeiro+Reabilitacao+Cardiaca+Concursos" }
+          ],
+          5: [
+            { id: "w1d5a", area: "Saúde da Mulher", title: "Fisioterapia Uroginecológica e Assoalho Pélvico", channel: "Profa. Mara Ribeiro", qMeta: 20, url: "https://www.youtube.com/results?search_query=Profa+Mara+Ribeiro+Saude+da+Mulher+Assoalho+Pelvico" },
+            { id: "w1d5b", area: "Pediatria & Neo", title: "Desenvolvimento Neuropsicomotor (DNPM) e Reflexos", channel: "Profa. Mara Ribeiro", qMeta: 15, url: "https://www.youtube.com/results?search_query=Profa+Mara+Ribeiro+Desenvolvimento+Neuropsicomotor+Pediatria" }
+          ]
+        }
+      }
+    ];
+
+    const EXTRA_TOPICS = [
+      ["Gasometria Arterial e Oxigenoterapia", "Ventilação Mecânica Invasiva: Modos Básicos", "Desmame Ventilatório e Extubação", "DPOC e Asma: Reabilitação Pulmonar", "Derrame Pleural, Pneumotórax e Atelectasia", "SDRA e Estratégias Protetoras na UTI", "Aspiração Traqueal e Higiene Brônquica", "VNI: CPAP e BiPAP Indicações", "Insuficiência Respiratória Aguda Tipos I e II", "Testes de Função Pulmonar (Espirometria)", "Revisão Geral Respiratória & UTI ENARE"],
+      ["AVE (AVC): Fases Flácida e Espástica", "Traumatismo Raquimedular (Escala ASIA)", "Doença de Parkinson e Escala Hoehn & Yahr", "Esclerose Múltipla e Guillain-Barré", "Paralisia Cerebral: Classificação GMFCS", "TCE e Escala de Coma de Glasgow", "Neuropatias Periféricas e Lesão de Plexo", "Facilitação Neuromuscular Proprioceptiva (PNF)", "Conceito Bobath e Controle Motor", "Escalas Neurológicas (Berg, Barthel, Ashworth)", "Revisão Geral Neurofuncional ENARE"],
+      ["Testes Especiais de Ombro e Manguito Rotador", "Testes Especiais de Joelho (LCA, LCP, Meniscos)", "Hérnia de Disco Cervical e Lombar", "Fraturas, Consolidação Óssea e Artroplastias", "Osteoartrite, Artrite Reumatoide e Espondilite", "Amputações e Protetização de MMII", "Cinesioterapia e Cadeias Cinéticas", "Eletrotermofototerapia (TENS, FES, US, Laser)", "Goniometria e Provas de Função Muscular", "Ergonomia e Saúde do Trabalhador (LER/DORT)", "Revisão Geral Traumato-Ortopedia ENARE"],
+      ["Lei 8.142/90 e Controle Social no SUS", "Decreto 7.508/2011 e Mapa da Saúde", "PNAB — Atenção Básica e eMulti", "Redes de Atenção à Saúde (RAS)", "Determinantes Sociais e História do SUS", "Vigilância em Saúde e Epidemiologia", "Política Nacional de Humanização (PNH)", "Bioética e Segurança do Paciente", "Financiamento do SUS e LC 141/2012", "CIF — Classificação Internacional de Funcionalidade", "Revisão Geral SUS & Saúde Pública ENARE"],
+      ["Fisioterapia na Gestação e Trabalho de Parto", "Incontinência Urinária de Esforço e Urgência", "Fisioterapia Oncológica e Linfedema Pós-Mastectomia", "Neonatologia: Método Canguru e Surfactante", "Bronquiolite Viral Aguda e Fibrose Cística", "Cardiopatias Congênitas e Pós-Operatório Cardíaco", "Sintaxe, Concordância e Regência (Português)", "Crase, Pontuação e Pronomes (Português)", "Fisioterapia Gerontológica e Prevenção de Quedas", "Resoluções COFFITO Atualizadas", "Simulado Comentado Final ENARE"]
+    ];
+
+    for (let w = 2; w <= 12; w++) {
+      const idx = w - 2;
+      WEEK_TEMPLATES.push({
+        week: w,
+        theme: `Ciclo ${w} • Aprofundamento Profa. Mara Ribeiro + Questões`,
+        days: {
+          1: [
+            { id: `w${w}d1a`, area: "Respiratória & UTI", title: EXTRA_TOPICS[0][idx], channel: "Profa. Mara Ribeiro", qMeta: 25, url: `https://www.youtube.com/results?search_query=Profa+Mara+Ribeiro+${encodeURIComponent(EXTRA_TOPICS[0][idx])}` },
+            { id: `w${w}d1b`, area: "SUS & Saúde Pública", title: EXTRA_TOPICS[3][idx], channel: "Profa. Natale Souza", qMeta: 15, url: `https://www.youtube.com/results?search_query=Profa+Natale+Souza+${encodeURIComponent(EXTRA_TOPICS[3][idx])}` }
+          ],
+          2: [
+            { id: `w${w}d2a`, area: "Neurofuncional", title: EXTRA_TOPICS[1][idx], channel: "Profa. Mara Ribeiro", qMeta: 25, url: `https://www.youtube.com/results?search_query=Profa+Mara+Ribeiro+${encodeURIComponent(EXTRA_TOPICS[1][idx])}` },
+            { id: `w${w}d2b`, area: "Português", title: "Questões Comentadas Português AOCP / FGV", channel: "Prof. Noslen", qMeta: 15, url: "https://www.youtube.com/results?search_query=Portugues+Banca+AOCP+FGV+Questoes+Comentadas" }
+          ],
+          3: [
+            { id: `w${w}d3a`, area: "Traumato-Ortopedia", title: EXTRA_TOPICS[2][idx], channel: "Profa. Mara Ribeiro", qMeta: 25, url: `https://www.youtube.com/results?search_query=Profa+Mara+Ribeiro+${encodeURIComponent(EXTRA_TOPICS[2][idx])}` },
+            { id: `w${w}d3b`, area: "Ética & COFFITO", title: "Legislação Profissional e Resoluções COFFITO", channel: "Profa. Mara Ribeiro", qMeta: 15, url: "https://www.youtube.com/results?search_query=Profa+Mara+Ribeiro+Resolucoes+COFFITO" }
+          ],
+          4: [
+            { id: `w${w}d4a`, area: "Saúde da Mulher", title: EXTRA_TOPICS[4][idx], channel: "Profa. Mara Ribeiro", qMeta: 20, url: `https://www.youtube.com/results?search_query=Profa+Mara+Ribeiro+${encodeURIComponent(EXTRA_TOPICS[4][idx])}` },
+            { id: `w${w}d4b`, area: "Cardiovascular", title: "Ergometria, IAM e Reabilitação Fase II", channel: "Profa. Mara Ribeiro", qMeta: 15, url: "https://www.youtube.com/results?search_query=Profa+Mara+Ribeiro+Fisioterapia+Cardiovascular" }
+          ],
+          5: [
+            { id: `w${w}d5a`, area: "Pediatria & Neo", title: "Ventilação Neonatal e Paralisia Braquial", channel: "Profa. Mara Ribeiro", qMeta: 20, url: "https://www.youtube.com/results?search_query=Profa+Mara+Ribeiro+Fisioterapia+Neonatal+Pediatria" },
+            { id: `w${w}d5b`, area: "Respiratória & UTI", title: "Maratona de Questões ENARE — Profa. Mara Ribeiro", channel: "Profa. Mara Ribeiro", qMeta: 20, url: "https://www.youtube.com/results?search_query=Profa+Mara+Ribeiro+Questoes+ENARE+Fisioterapia" }
+          ]
+        }
+      });
+    }
+
+    /* INITIAL QUESTION BANK (ENARE / AOCP / FGV STYLE) */
+    const BASE_QUESTIONS = [
+      {
+        area: "Respiratória & UTI",
+        q: "(ENARE / Instituto AOCP) Paciente adulto internado na UTI por SDRA grave encontra-se em ventilação mecânica invasiva. De acordo com a estratégia de ventilação protetora recomendada pelas Diretrizes Brasileiras de Ventilação Mecânica, qual deve ser o volume corrente (VC) ajustado?",
+        opts: [
+          "A) 10 a 12 mL/kg de peso predito, mantendo pressão de platô abaixo de 40 cmH2O.",
+          "B) 4 a 6 mL/kg de peso predito, mantendo pressão de platô ≤ 30 cmH2O e driving pressure < 15 cmH2O.",
+          "C) 8 a 10 mL/kg de peso real, com PEEP fixa em 5 cmH2O.",
+          "D) 3 a 4 mL/kg de peso real, independentemente da pressão de platô.",
+          "E) 8 mL/kg de peso predito, priorizando frequência respiratória abaixo de 10 irpm."
+        ],
+        ans: 1,
+        exp: "Na SDRA, a ventilação protetora utiliza baixo volume corrente (4 a 6 mL/kg de peso predito), pressão de platô ≤ 30 cmH2O e pressão de distensão (driving pressure) < 15 cmH2O para evitar volutrauma e barotrauma."
+      },
+      {
+        area: "Neurofuncional",
+        q: "(ENARE) Durante a avaliação de um paciente pós-AVE isquêmico, o fisioterapeuta observa resistência velocidade-dependente ao estiramento passivo com leve aumento do tônus muscular, manifestado por tensão seguida de resistência mínima no restante da amplitude (menos da metade do arco). Na Escala Modificada de Ashworth, essa graduação corresponde a:",
+        opts: ["A) Grau 0", "B) Grau 1", "C) Grau 1+", "D) Grau 2", "E) Grau 3"],
+        ans: 2,
+        exp: "Na Escala Modificada de Ashworth, o Grau 1+ caracteriza-se por leve aumento do tônus, manifestado por tensão abrupta seguida de resistência mínima em menos da metade da amplitude de movimento restante."
+      },
+      {
+        area: "Traumato-Ortopedia",
+        q: "(Concurso Fisioterapia) Qual teste ortopédico é considerado o padrão-ouro clínico de maior sensibilidade para avaliar a integridade do ligamento cruzado anterior (LCA) do joelho, realizado com flexão de 20° a 30°?",
+        opts: ["A) Teste de McMurray", "B) Teste de Lachman", "C) Teste de Gaveta Posterior", "D) Teste de Apley", "E) Teste de Phalen"],
+        ans: 1,
+        exp: "O Teste de Lachman (realizado entre 20° e 30° de flexão do joelho) apresenta a maior sensibilidade e especificidade para ruptura do LCA, pois minimiza a ação estabilizadora secundária dos meniscos."
+      },
+      {
+        area: "SUS & Saúde Pública",
+        q: "(ENARE) Segundo a Lei nº 8.080/1990, o conjunto articulado e contínuo das ações e serviços preventivos e curativos, individuais e coletivos, exigidos para cada caso em todos os níveis de complexidade do sistema, define o princípio da:",
+        opts: ["A) Universalidade de acesso", "B) Descentralização político-administrativa", "C) Integralidade de assistência", "D) Participação da comunidade", "E) Equidade tributária"],
+        ans: 2,
+        exp: "Art. 7º, inciso II da Lei 8.080/90: Integralidade de assistência é entendida como conjunto articulado e contínuo das ações e serviços preventivos e curativos, individuais e coletivos, em todos os níveis de complexidade."
+      },
+      {
+        area: "Ética & COFFITO",
+        q: "(COFFITO 424/2013) De acordo com o Código de Ética e Deontologia da Fisioterapia, constitui dever fundamental do fisioterapeuta:",
+        opts: [
+          "A) Prescrever tratamento sem avaliação prévia quando solicitado por familiar.",
+          "B) Manter segredo sobre fato sigiloso de que tenha conhecimento em razão de sua atividade profissional, exceto nos casos previstos em lei.",
+          "C) Divulgar preços de procedimentos em redes sociais como forma de concorrência.",
+          "D) Delegar a avaliação cinético-funcional a acadêmicos sem supervisão.",
+          "E) Substituir a titulação de fisioterapeuta por especialidades médicas."
+        ],
+        ans: 1,
+        exp: "O sigilo profissional é dever ético fundamental previsto na Resolução COFFITO nº 424/2013, admitindo quebra apenas por justa causa ou dever legal."
+      },
+      {
+        area: "Saúde da Mulher",
+        q: "(ENARE) Na reabilitação pós-operatória de câncer de mama com linfadenectomia axilar, qual componente da Terapia Física Complexa (TFC) atua mantendo a redução do volume do membro alcançada pela drenagem linfática manual?",
+        opts: [
+          "A) Termoterapia profunda com ondas curtas",
+          "B) Enfaixamento compressivo funcional de baixa elasticidade",
+          "C) Crioterapia intermitente prolongada",
+          "D) Eletroestimulação com corrente russa em alta intensidade",
+          "E) Tração cervical contínua"
+        ],
+        ans: 1,
+        exp: "A Terapia Física Complexa (TFC) baseia-se em quatro pilares: cuidados com a pele, drenagem linfática manual, enfaixamento compressivo (baixa elasticidade na fase intensiva) e exercícios miolinfocinéticos."
+      },
+      {
+        area: "Cardiovascular",
+        q: "(Concurso Fisioterapia) Na reabilitação cardiovascular Fase I (intra-hospitalar) pós-infarto agudo do miocárdio não complicado, qual é a intensidade recomendada para prescrição de exercícios segundo a Diretriz Sul-Americana de Reabilitação Cardiovascular?",
+        opts: [
+          "A) Elevação da FC até 85% da FC máxima prevista",
+          "B) Elevação de até 20 bpm acima da FC de repouso ou escala de Borg entre 11 e 13",
+          "C) Exercícios resistidos com carga acima de 80% de 1RM",
+          "D) Repouso absoluto no leito por 14 dias",
+          "E) Corrida em esteira a 6 METs no 2º dia"
+        ],
+        ans: 1,
+        exp: "Na Fase I intra-hospitalar, a intensidade deve ser leve (2 a 4 METs), elevando a frequência cardíaca em até 20 bpm acima do repouso (ou até 30 bpm em pós-operatório) com percepção de esforço Borg 11–13."
+      },
+      {
+        area: "Pediatria & Neo",
+        q: "(ENARE) O reflexo tônico cervical assimétrico (RTCA), conhecido como 'posição do esgrimista', está fisiologicamente presente no recém-nascido a termo e deve ser inibido até aproximadamente qual idade?",
+        opts: ["A) 1 mês", "B) 4 a 6 meses", "C) 12 meses", "D) 18 meses", "E) 24 meses"],
+        ans: 1,
+        exp: "O RTCA surge no nascimento e integra-se (desaparece) entre o 4º e o 6º mês de vida, permitindo que o bebê leve as mãos à linha média e role."
+      },
+      {
+        area: "Português",
+        q: "(Estilo Instituto AOCP) Assinale a alternativa em que o emprego do sinal indicativo de crase está rigorosamente CORRETO:",
+        opts: [
+          "A) O fisioterapeuta encaminhou o paciente à fazer hidroterapia.",
+          "B) A reabilitação começou à partir das oito horas da manhã.",
+          "C) O protocolo foi aplicado à todas as gestantes atendidas no ambulatório.",
+          "D) A equipe dedicou-se à elaboração do plano terapêutico singular.",
+          "E) Entregamos o laudo à ela logo após a alta hospitalar."
+        ],
+        ans: 3,
+        exp: "Quem se dedica, dedica-se 'a' algo (preposição a) + artigo definido feminino 'a' antes de 'elaboração' = crase obrigatória ('à elaboração'). Não ocorre crase antes de verbo, pronome pessoal ou 'todas'."
+      }
+    ];
+
+    let quizIndex = 0;
+    let quizAnswered = false;
+
+    const FLASHCARDS = [
+      { area: "Respiratória & UTI", q: "Quais são os 3 critérios gasométricos da Acidose Respiratória Descompensada?", a: "pH < 7,35 + PaCO₂ > 45 mmHg + HCO₃⁻ normal (22–26 mEq/L)." },
+      { area: "Respiratória & UTI", q: "Qual a fórmula da Driving Pressure (Pressão de Distensão) na Ventilação Mecânica?", a: "Driving Pressure = Pressão de Platô (Pplat) − PEEP. Deve ser mantida < 15 cmH₂O." },
+      { area: "Neurofuncional", q: "O que avalia o Índice de Barthel e qual sua pontuação máxima?", a: "Avalia independência funcional nas Atividades Básicas de Vida Diária (ABVDs). Pontuação de 0 a 100 pontos." },
+      { area: "Neurofuncional", q: "Qual a diferença entre Escala de Glasgow atualizada e resposta pupilar (Glasgow-P)?", a: "A pontuação ocular + verbal + motora (3 a 15) subtrai os pontos de reatividade pupilar (0, 1 ou 2), variando de 1 a 15." },
+      { area: "Traumato-Ortopedia", q: "Quais músculos compõem o Manguito Rotador?", a: "Supraespinal, Infraespinal, Redondo Menor e Subescapular (SITS)." },
+      { area: "Traumato-Ortopedia", q: "Qual nervo é comprimido na Síndrome do Túnel do Carpo e quais testes são positivos?", a: "Nervo Mediano. Testes positivos: Phalen, Phalen Invertido e Sinal de Tinel no punho." },
+      { area: "SUS & Saúde Pública", q: "Quais são as duas instâncias colegiadas de participação social garantidas pela Lei 8.142/90?", a: "Conferência de Saúde (a cada 4 anos) e Conselho de Saúde (caráter permanente e deliberativo, 50% usuários)." },
+      { area: "SUS & Saúde Pública", q: "Quais são os 3 princípios doutrinários (éticos) do SUS?", a: "Universalidade, Integralidade e Equidade." },
+      { area: "Saúde da Mulher", q: "Qual o principal músculo do diafragma pélvico responsável pela sustentação visceral?", a: "Músculo Levantador do Ânus (composto por puborretal, pubococcígeo e iliococcígeo)." },
+      { area: "Cardiovascular", q: "O que indica o Teste de Caminhada de 6 Minutos (TC6M)?", a: "Avalia a capacidade funcional submáxima cardiorrespiratória e resposta terapêutica." },
+      { area: "Pediatria & Neo", q: "Qual é a tríade clássica da Síndrome do Desconforto Respiratório do Recém-Nascido (Doença da Membrana Hialina)?", a: "Deficiência de surfactante pulmonar em prematuros, gerando taquipneia, gemência expiratória e retrações intercostais." },
+      { area: "Ética & COFFITO", q: "Quantas horas semanais máximas estabelece a Lei nº 8.856/1994 para o Fisioterapeuta?", a: "Jornada máxima de 30 horas semanais de trabalho." }
+    ];
+
+    let fcIdx = 0;
+    let fcFlipped = false;
+
+    const EDITAL_AREAS = [
+      { area: "Fisioterapia Respiratória & Terapia Intensiva", topics: ["Anatomia e Fisiologia Respiratória", "Gasometria Arterial e Equilíbrio Ácido-Básico", "Oxigenoterapia e Ventilação Não Invasiva (VNI)", "Ventilação Mecânica Invasiva e Desmame", "Fisioterapia nas Doenças Obstrutivas e Restritivas"] },
+      { area: "Fisioterapia Neurofuncional", topics: ["Acidente Vascular Encefálico (AVE)", "Traumatismo Raquimedular (TRM)", "Doenças Neurodegenerativas (Parkinson, EM, ELA)", "Neuropatias Periféricas e Paralisia Facial", "Escalas Funcionais e Técnicas (Bobath, PNF)"] },
+      { area: "Fisioterapia Traumato-Ortopédica e Reumatológica", topics: ["Avaliação Postural, Goniometria e Testes Especiais", "Lesões de Ombro, Joelho, Tornozelo e Coluna", "Fraturas, Artroplastias e Amputações", "Doenças Reumáticas (OA, AR, Espondilite)", "Eletrotermofototerapia e Cinesioterapia"] },
+      { area: "Fisioterapia em Saúde da Mulher e Uroginecologia", topics: ["Anatomia do Assoalho Pélvico e Incontinências", "Fisioterapia na Gestação, Parto e Puerpério", "Fisioterapia Oncológica (Mama e Pélvica)"] },
+      { area: "Fisioterapia Cardiovascular", topics: ["Fisiologia Cardiovascular e Eletrocardiograma Básico", "Reabilitação Cardíaca Fases I, II, III e IV", "Pós-Operatório de Cirurgia Cardíaca"] },
+      { area: "Fisioterapia em Pediatria e Neonatologia", topics: ["Desenvolvimento Neuropsicomotor (DNPM) e Reflexos", "Paralisia Cerebral e Mielomeningocele", "Ventilação Mecânica Neonatal e Pediátrica"] },
+      { area: "Saúde Pública e Legislação do SUS", topics: ["Constituição Federal (Arts. 196–200) e História do SUS", "Lei 8.080/1990 e Lei 8.142/1990", "Decreto 7.508/2011, PNAB e Redes de Atenção"] },
+      { area: "Ética, Deontologia e Legislação Profissional", topics: ["Decreto-Lei 938/1969 e Lei 8.856/1994 (30h)", "Resolução COFFITO 424/2013 (Código de Ética)", "CIF e Diagnóstico Fisioterapêutico"] },
+      { area: "Língua Portuguesa (Foco ENARE / AOCP)", topics: ["Compreensão e Interpretação de Textos", "Sintaxe, Concordância Verbal/Nominal e Regência", "Crase, Pontuação e Coesão Textual"] }
+    ];
+
+    /* NAVIGATION */
+    document.querySelectorAll(".tab-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+        document.querySelectorAll(".tab-panel").forEach(p => p.classList.remove("active"));
+        btn.classList.add("active");
+        document.getElementById("tab-" + btn.dataset.tab).classList.add("active");
+      });
+    });
+
+    function toggleTheme() {
+      state.dark = !state.dark;
+      document.body.classList.toggle("dark", state.dark);
+      saveState();
+    }
+
+    function updateCountdown() {
+      const target = new Date(state.examDate + "T08:00:00");
+      const now = new Date();
+      const diff = Math.max(0, Math.ceil((target - now) / (1000 * 60 * 60 * 24)));
+      document.getElementById("countdownBadge").textContent = `📅 ${diff} dias ✎`;
+      document.getElementById("streakBadge").textContent = `🔥 ${state.streak} ${state.streak === 1 ? "dia" : "dias"}`;
+    }
+
+    function editExamDate() {
+      const val = prompt("Digite a data da sua prova (AAAA-MM-DD):", state.examDate);
+      if (val && /^\d{4}-\d{2}-\d{2}$/.test(val)) {
+        state.examDate = val;
+        updateCountdown();
+        saveState();
+        showToast("Data da prova atualizada!");
+      }
+    }
+
+    function registerStudyDay() {
+      const today = new Date().toISOString().slice(0, 10);
+      if (state.lastStudyDate === today) {
+        showToast("Você já registrou o dia de hoje! 🔥");
+        return;
+      }
+      state.streak += 1;
+      state.lastStudyDate = today;
+      updateCountdown();
+      saveState();
+      showToast(`Constância atualizada: ${state.streak} dias seguidos! 🚀`);
+    }
+
+    /* FOCUS TODAY */
+    function renderFocusToday() {
+      const sel = document.getElementById("daySimulator").value;
+      const dayNum = sel === "auto" ? new Date().getDay() : parseInt(sel, 10);
+      const dayNames = ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado"];
+      const weekNum = parseInt(document.getElementById("weekSelector").value || "1", 10);
+      const weekObj = WEEK_TEMPLATES.find(w => w.week === weekNum) || WEEK_TEMPLATES[0];
+
+      document.getElementById("focusHeading").textContent = `🟢 Foco de Hoje: ${dayNames[dayNum]}`;
+      const grid = document.getElementById("focusGrid");
+
+      if (dayNum === 0) {
+        document.getElementById("focusSub").textContent = "Domingo é reservado para descanso mental e recuperação.";
+        grid.innerHTML = `<div class="lesson-card" style="grid-column:1/-1;"><div class="lesson-title">🌿 Descanso Estratégico</div><p style="font-size:13px; color:var(--text-muted);">Descanse hoje para manter alta retenção na próxima semana de estudos.</p></div>`;
+        return;
+      }
+
+      if (dayNum === 6) {
+        document.getElementById("focusSub").textContent = "Sábado • Dia oficial de Simulado estilo ENARE (60 questões)";
+        grid.innerHTML = `
+          <div class="lesson-card">
+            <div><span class="area-tag">Simulado ENARE</span><span class="channel-badge" style="margin-left:6px;">60 Questões</span>
+            <div class="lesson-title">Simulado Completo (40 Específicas + 10 SUS + 10 Português)</div></div>
+            <div class="lesson-actions">
+              <span style="font-size:12px; color:var(--emerald); font-weight:700;">Meta: 48+ acertos</span>
+              <a class="yt-link" href="https://www.youtube.com/results?search_query=Profa+Mara+Ribeiro+Simulado+ENARE+Fisioterapia" target="_blank" rel="noopener noreferrer">Correção Comentada YT ↗</a>
+            </div>
+          </div>`;
+        return;
+      }
+
+      const tasks = weekObj.days[dayNum] || [];
+      document.getElementById("focusSub").textContent = `${tasks.map(t => t.area).join(" & ")} • Semana ${weekNum}`;
+      grid.innerHTML = tasks.map(t => `
+        <div class="lesson-card">
+          <div>
+            <div class="lesson-top">
+              <span class="area-tag">${t.area}</span>
+              <span class="channel-badge">${t.channel}</span>
+            </div>
+            <div class="lesson-title">${t.title}</div>
+          </div>
+          <div class="lesson-actions">
+            <span style="font-size:12px; color:var(--emerald); font-weight:700;">${t.qMeta} questões</span>
+            <a class="yt-link" href="${t.url}" target="_blank" rel="noopener noreferrer">Assistir Aula ↗</a>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    /* SCHEDULE 12 WEEKS */
+    function initWeekSelector() {
+      const sel = document.getElementById("weekSelector");
+      sel.innerHTML = WEEK_TEMPLATES.map(w => `<option value="${w.week}">Semana ${w.week} — ${w.theme.split("•")[0].trim()}</option>`).join("");
+    }
+
+    function renderSchedule() {
+      const weekNum = parseInt(document.getElementById("weekSelector").value || "1", 10);
+      const weekObj = WEEK_TEMPLATES.find(w => w.week === weekNum) || WEEK_TEMPLATES[0];
+      const dayLabels = { 1: "Segunda-feira", 2: "Terça-feira", 3: "Quarta-feira", 4: "Quinta-feira", 5: "Sexta-feira" };
+      const container = document.getElementById("scheduleContainer");
+
+      let html = "";
+      for (let d = 1; d <= 5; d++) {
+        const tasks = weekObj.days[d] || [];
+        html += `<div class="day-block"><div class="day-header"><span class="day-name">${dayLabels[d]}</span><span style="font-size:12px; color:var(--text-muted);">Semana ${weekNum}</span></div>`;
+        tasks.forEach(t => {
+          const checked = !!state.completedTasks[t.id];
+          const st = state.taskStats[t.id] || { done: "", hits: "" };
+          html += `
+            <div class="task-row">
+              <div class="task-left">
+                <input type="checkbox" ${checked ? "checked" : ""} onchange="toggleTask('${t.id}', this.checked)" />
+                <div>
+                  <div style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:4px;">
+                    <span class="area-tag">${t.area}</span>
+                    <span class="channel-badge">${t.channel}</span>
+                  </div>
+                  <div class="${checked ? "done-text" : ""}" style="font-weight:700; font-size:14px;">${t.title}</div>
+                </div>
+              </div>
+              <div class="q-logger">
+                <input type="number" placeholder="Feitas" min="0" value="${st.done}" id="qdone_${t.id}" />
+                <input type="number" placeholder="Acertos" min="0" value="${st.hits}" id="qhits_${t.id}" />
+                <button class="btn-outline" onclick="saveTaskQuestions('${t.id}', '${t.title.replace(/'/g, "")}')">Salvar</button>
+                <a class="yt-link" href="${t.url}" target="_blank" rel="noopener noreferrer">YouTube ↗</a>
+              </div>
+            </div>`;
+        });
+        html += `</div>`;
+      }
+
+      html += `
+        <div class="day-block" style="border-left:4px solid var(--emerald);">
+          <div class="day-header"><span class="day-name" style="color:var(--emerald);">Sábado — Simulado ENARE (60 questões)</span><span class="channel-badge">Revisão Semanal</span></div>
+          <p style="font-size:13px; color:var(--text-muted); margin-bottom:8px;">Resolva 40 questões específicas + 10 SUS + 10 Português e registre sua nota na aba Questões &amp; Simulados.</p>
+          <a class="yt-link" href="https://www.youtube.com/results?search_query=Profa+Mara+Ribeiro+Resolucao+Questoes+ENARE" target="_blank" rel="noopener noreferrer">Abrir Correções Profa. Mara Ribeiro ↗</a>
+        </div>
+        <div class="day-block">
+          <div class="day-header"><span class="day-name" style="color:var(--text-muted);">Domingo — Descanso Estratégico</span></div>
+          <p style="font-size:13px; color:var(--text-muted);">Dia livre para descanso físico e mental.</p>
+        </div>`;
+
+      container.innerHTML = html;
+      renderFocusToday();
+    }
+
+    function toggleTask(id, val) {
+      state.completedTasks[id] = val;
+      saveState();
+      renderSchedule();
+    }
+
+    function saveTaskQuestions(id, title) {
+      const done = parseInt(document.getElementById("qdone_" + id).value || "0", 10);
+      const hits = parseInt(document.getElementById("qhits_" + id).value || "0", 10);
+      if (done <= 0) {
+        showToast("Informe a quantidade de questões feitas.");
+        return;
+      }
+      state.taskStats[id] = { done, hits: Math.min(done, hits) };
+      state.completedTasks[id] = true;
+      const pct = Math.round((Math.min(done, hits) / done) * 100);
+      if (pct < 70) {
+        state.errors.unshift({ id: "e_" + Date.now(), topic: `${title} (${pct}% de acerto)`, cycle: "Revisão 24h", done: false });
+        renderErrors();
+        showToast(`Salvo (${pct}%)! Enviado ao Caderno de Erros para revisão.`);
+      } else {
+        showToast(`Excelente! ${pct}% de aproveitamento registrado.`);
+      }
+      saveState();
+      renderSchedule();
+    }
+
+    /* HYBRID QUESTION ENGINE */
+    function getAllQuestions() {
+      const area = document.getElementById("quizAreaFilter").value;
+      const all = [...BASE_QUESTIONS, ...state.customQuestions];
+      return area === "Todas" ? all : all.filter(item => item.area === area);
+    }
+
+    function renderQuiz() {
+      const list = getAllQuestions();
+      const box = document.getElementById("quizBox");
+      if (!list.length) {
+        box.innerHTML = `<p style="font-size:13px; color:var(--text-muted);">Nenhuma questão cadastrada nesta área ainda.</p>`;
+        return;
+      }
+      if (quizIndex >= list.length) quizIndex = 0;
+      const item = list[quizIndex];
+      quizAnswered = false;
+
+      box.innerHTML = `
+        <div style="background:var(--bg-card-strong); border:1px solid var(--border-subtle); border-radius:14px; padding:16px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+            <span class="area-tag">${item.area}</span>
+            <span style="font-size:12px; color:var(--text-muted); font-weight:700;">Questão ${quizIndex + 1} de ${list.length}</span>
+          </div>
+          <p style="font-size:14px; font-weight:600; margin-bottom:14px;">${item.q}</p>
+          <div id="quizOptions">
+            ${item.opts.map((opt, idx) => `<button class="quiz-option" onclick="answerQuiz(${idx})">${opt}</button>`).join("")}
+          </div>
+          <div id="quizFeedback"></div>
+          <div style="display:flex; justify-content:space-between; margin-top:12px;">
+            <button class="btn-outline" onclick="prevQuiz()">⬅️ Anterior</button>
+            <button class="btn-primary" onclick="nextQuiz()">Próxima Questão ➡️</button>
+          </div>
+        </div>`;
+    }
+
+    function answerQuiz(idx) {
+      if (quizAnswered) return;
+      quizAnswered = true;
+      const list = getAllQuestions();
+      const item = list[quizIndex];
+      const buttons = document.querySelectorAll("#quizOptions .quiz-option");
+      buttons.forEach((b, i) => {
+        if (i === item.ans) b.classList.add("correct");
+        else if (i === idx) b.classList.add("wrong");
+      });
+
+      const qKey = "quiz_" + Date.now();
+      const isCorrect = idx === item.ans;
+      state.taskStats[qKey] = { done: 1, hits: isCorrect ? 1 : 0, area: item.area };
+
+      if (!isCorrect) {
+        state.errors.unshift({ id: "qe_" + Date.now(), topic: `[Questão Errada • ${item.area}] ${item.q.slice(0, 85)}...`, cycle: "Revisão 24h", done: false });
+        renderErrors();
+      }
+      saveState();
+
+      document.getElementById("quizFeedback").innerHTML = `
+        <div class="explanation-box">
+          <strong>${isCorrect ? "✅ Resposta Correta!" : "❌ Resposta Incorreta — Enviada ao Caderno de Erros"}</strong><br/>
+          ${item.exp}
+        </div>`;
+    }
+
+    function nextQuiz() { quizIndex = (quizIndex + 1) % getAllQuestions().length; renderQuiz(); }
+    function prevQuiz() { const len = getAllQuestions().length; quizIndex = (quizIndex - 1 + len) % len; renderQuiz(); }
+
+    function copyGeminiPrompt() {
+      const area = document.getElementById("quizAreaFilter").value;
+      const topic = area === "Todas" ? "Fisioterapia Respiratória, Neurofuncional e SUS (ENARE)" : area;
+      const promptText = `Crie 5 questões inéditas estilo banca ENARE / Instituto AOCP sobre "${topic}" para Fisioterapia, com 5 alternativas (A a E) e gabarito comentado. Formate EXATAMENTE assim para eu colar no meu aplicativo:
+
+AREA: ${topic}
+PERGUNTA: [enunciado]
+A) [texto]
+B) [texto]
+C) [texto]
+D) [texto]
+E) [texto]
+GABARITO: [letra]
+COMENTARIO: [explicação]`;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(promptText).then(() => showToast("Prompt copiado! Cole no Gemini para gerar +5 questões."));
+      } else {
+        showToast("Selecione a área e copie o modelo abaixo para gerar no Gemini.");
+      }
+    }
+
+    function importGeminiQuestions() {
+      const raw = document.getElementById("geminiPasteInput").value.trim();
+      if (!raw) return;
+      const blocks = raw.split(/PERGUNTA:/i).slice(1);
+      let added = 0;
+      blocks.forEach(b => {
+        const lines = b.split("
+").map(l => l.trim()).filter(Boolean);
+        const qText = lines[0];
+        const opts = lines.filter(l => /^[A-E]\)/i.test(l));
+        const gabLine = lines.find(l => /^GABARITO:/i.test(l));
+        const comLine = lines.find(l => /^COMENTARIO:/i.test(l));
+        if (qText && opts.length >= 4 && gabLine) {
+          const letter = gabLine.replace(/^GABARITO:/i, "").trim().toUpperCase()[0];
+          const ansIdx = Math.max(0, "ABCDE".indexOf(letter));
+          const areaVal = document.getElementById("quizAreaFilter").value;
+          state.customQuestions.push({
+            area: areaVal === "Todas" ? "Respiratória & UTI" : areaVal,
+            q: qText,
+            opts: opts,
+            ans: ansIdx,
+            exp: comLine ? comLine.replace(/^COMENTARIO:/i, "").trim() : "Gabarito importado do Gemini."
+          });
+          added++;
+        }
+      });
+      if (added > 0) {
+        document.getElementById("geminiPasteInput").value = "";
+        saveState();
+        renderQuiz();
+        showToast(`${added} questões adicionadas ao seu quiz!`);
+      } else {
+        showToast("Verifique o formato colado (PERGUNTA, A..E, GABARITO, COMENTARIO).");
+      }
+    }
+
+    /* SIMULADOS */
+    function addSimulado() {
+      const title = document.getElementById("simTitleInput").value.trim() || `Simulado ENARE ${state.simulados.length + 1}`;
+      const score = parseInt(document.getElementById("simScoreInput").value || "0", 10);
+      if (isNaN(score) || score < 0 || score > 60) {
+        showToast("Informe uma nota válida entre 0 e 60.");
+        return;
+      }
+      state.simulados.push({ title, score });
+      document.getElementById("simTitleInput").value = "";
+      document.getElementById("simScoreInput").value = "";
+      saveState();
+      renderSimulados();
+      showToast("Simulado registrado!");
+    }
+
+    function renderSimulados() {
+      const box = document.getElementById("simHistoryList");
+      box.innerHTML = state.simulados.map(s => {
+        const pct = Math.round((s.score / 60) * 100);
+        return `<div class="task-row"><strong>${s.title}</strong><span class="channel-badge">${s.score}/60 acertos (${pct}%)</span></div>`;
+      }).join("");
+    }
+
+    /* CUSTOM LINKS */
+    function renderCustomLinks() {
+      const box = document.getElementById("customLinksList");
+      box.innerHTML = state.customLinks.map((l, i) => `
+        <div class="task-row">
+          <div>
+            <span class="area-tag">${l.area}</span>
+            <span class="channel-badge" style="margin-left:6px;">${l.channel}</span>
+            <div style="font-weight:700; font-size:14px; margin-top:4px;">${l.title}</div>
+          </div>
+          <div style="display:flex; gap:8px;">
+            <a class="yt-link" href="${l.url}" target="_blank" rel="noopener noreferrer">Abrir no YouTube ↗</a>
+            <button class="btn-outline" onclick="removeCustomLink(${i})">🗑️</button>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function addCustomLink() {
+      const title = document.getElementById("newLinkTitle").value.trim();
+      const url = document.getElementById("newLinkUrl").value.trim();
+      const area = document.getElementById("newLinkArea").value;
+      if (!title || !url) {
+        showToast("Preencha o título e o link do YouTube.");
+        return;
+      }
+      state.customLinks.push({ id: "cl_" + Date.now(), title, url, area, channel: "★ Seu Link YT" });
+      document.getElementById("newLinkTitle").value = "";
+      document.getElementById("newLinkUrl").value = "";
+      saveState();
+      renderCustomLinks();
+      showToast("Link salvo com sucesso!");
+    }
+
+    function removeCustomLink(i) {
+      state.customLinks.splice(i, 1);
+      saveState();
+      renderCustomLinks();
+    }
+
+    /* FLASHCARDS */
+    function renderFlashcard() {
+      const fc = FLASHCARDS[fcIdx];
+      document.getElementById("fcCounter").textContent = `${fcIdx + 1} / ${FLASHCARDS.length}`;
+      document.getElementById("fcArea").textContent = fc.area;
+      document.getElementById("fcText").textContent = fcFlipped ? fc.a : fc.q;
+      document.getElementById("fcHint").textContent = fcFlipped ? "✅ Resposta revelada (toque para voltar)" : "👆 Toque para ver a resposta";
+    }
+    function flipFlashcard() { fcFlipped = !fcFlipped; renderFlashcard(); }
+    function nextFlashcard() { fcIdx = (fcIdx + 1) % FLASHCARDS.length; fcFlipped = false; renderFlashcard(); }
+    function prevFlashcard() { fcIdx = (fcIdx - 1 + FLASHCARDS.length) % FLASHCARDS.length; fcFlipped = false; renderFlashcard(); }
+
+    /* ERROR NOTEBOOK */
+    function renderErrors() {
+      const box = document.getElementById("errorList");
+      if (!state.errors.length) {
+        box.innerHTML = `<p style="font-size:13px; color:var(--text-muted);">Nenhum erro pendente no momento.</p>`;
+        return;
+      }
+      box.innerHTML = state.errors.map((e, i) => `
+        <div class="task-row">
+          <div style="flex:1;">
+            <span class="area-tag">${e.cycle}</span>
+            <div class="${e.done ? "done-text" : ""}" style="font-size:13px; font-weight:600; margin-top:4px;">${e.topic}</div>
+          </div>
+          <div style="display:flex; gap:6px;">
+            <button class="btn-outline" onclick="advanceErrorCycle(${i})">⏭️ Avançar Ciclo</button>
+            <button class="btn-outline" onclick="removeError(${i})">✓</button>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function addManualError() {
+      const val = document.getElementById("manualErrorInput").value.trim();
+      if (!val) return;
+      state.errors.unshift({ id: "me_" + Date.now(), topic: val, cycle: "Revisão 24h", done: false });
+      document.getElementById("manualErrorInput").value = "";
+      saveState();
+      renderErrors();
+    }
+
+    function advanceErrorCycle(i) {
+      const cycles = ["Revisão 24h", "Revisão 7d", "Revisão 15d", "Revisão 30d", "Dominado ✅"];
+      const cur = cycles.indexOf(state.errors[i].cycle);
+      if (cur < cycles.length - 1) {
+        state.errors[i].cycle = cycles[cur + 1];
+        if (state.errors[i].cycle === "Dominado ✅") state.errors[i].done = true;
+      }
+      saveState();
+      renderErrors();
+    }
+
+    function removeError(i) {
+      state.errors.splice(i, 1);
+      saveState();
+      renderErrors();
+    }
+
+    /* EDITAL VERTICALIZADO */
+    function renderEdital() {
+      const box = document.getElementById("editalList");
+      box.innerHTML = EDITAL_AREAS.map((sec, sIdx) => `
+        <div class="day-block">
+          <div class="day-header"><span class="day-name">${sec.area}</span></div>
+          ${sec.topics.map((tp, tIdx) => {
+            const key = `ed_${sIdx}_${tIdx}`;
+            const st = state.editalChecked[key] || { aula: false, quest: false, rev: false };
+            return `
+              <div class="task-row">
+                <span style="font-size:13px; font-weight:600;">${tp}</span>
+                <div style="display:flex; gap:12px; font-size:12px;">
+                  <label><input type="checkbox" ${st.aula ? "checked" : ""} onchange="toggleEdital('${key}','aula',this.checked)"/> Aula YT</label>
+                  <label><input type="checkbox" ${st.quest ? "checked" : ""} onchange="toggleEdital('${key}','quest',this.checked)"/> Questões</label>
+                  <label><input type="checkbox" ${st.rev ? "checked" : ""} onchange="toggleEdital('${key}','rev',this.checked)"/> Revisado</label>
+                </div>
+              </div>`;
+          }).join("")}
+        </div>
+      `).join("");
+    }
+
+    function toggleEdital(key, field, val) {
+      if (!state.editalChecked[key]) state.editalChecked[key] = { aula: false, quest: false, rev: false };
+      state.editalChecked[key][field] = val;
+      saveState();
+    }
+
+    function exportBackup() {
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(state, null, 2));
+      const a = document.createElement("a");
+      a.href = dataStr;
+      a.download = "backup_fisio_enare.json";
+      a.click();
+    }
+
+    /* KPIs & SVG CHARTS */
+    function updateKPIs() {
+      const totalBlocks = 120;
+      const doneBlocks = Object.values(state.completedTasks).filter(Boolean).length;
+      const editalPct = Math.min(100, Math.round((doneBlocks / totalBlocks) * 100));
+      document.getElementById("kpiEditalPct").textContent = editalPct + "%";
+      document.getElementById("kpiEditalSub").textContent = `${doneBlocks} de ${totalBlocks} blocos concluídos`;
+
+      let totalQ = 0, totalH = 0;
+      Object.values(state.taskStats).forEach(s => {
+        totalQ += (s.done || 0);
+        totalH += (s.hits || 0);
+      });
+      document.getElementById("kpiQuestionsTotal").textContent = totalQ;
+      const acc = totalQ > 0 ? Math.round((totalH / totalQ) * 100) : 0;
+      document.getElementById("kpiAccuracyPct").textContent = acc + "%";
+      document.getElementById("kpiAccuracySub").textContent = `${totalH} acertos em ${totalQ} questões`;
+
+      if (state.simulados.length > 0) {
+        const avg = (state.simulados.reduce((a, b) => a + b.score, 0) / state.simulados.length).toFixed(1);
+        document.getElementById("kpiSimAvg").textContent = `${avg}/60`;
+      }
+    }
+
+    function renderCharts() {
+      // Bar chart by macro area
+      const cats = [
+        { label: "Resp/UTI", count: 0 },
+        { label: "Neuro", count: 0 },
+        { label: "Ortopedia", count: 0 },
+        { label: "Mulher/Ped", count: 0 },
+        { label: "SUS/Port", count: 0 }
+      ];
+      Object.entries(state.taskStats).forEach(([k, v]) => {
+        const q = v.done || 0;
+        const area = v.area || "";
+        if (k.includes("d1a") || k.includes("d5b") || area.includes("Resp")) cats[0].count += q;
+        else if (k.includes("d2a") || area.includes("Neuro")) cats[1].count += q;
+        else if (k.includes("d3a") || area.includes("Traumato")) cats[2].count += q;
+        else if (k.includes("d4") || k.includes("d5a") || area.includes("Mulher") || area.includes("Ped") || area.includes("Cardio")) cats[3].count += q;
+        else cats[4].count += q;
+      });
+
+      const maxVal = Math.max(20, ...cats.map(c => c.count));
+      const areaSvg = document.getElementById("areaChart");
+      let bars = `<line x1="36" y1="170" x2="440" y2="170" stroke="rgba(120,140,160,0.3)" />`;
+      cats.forEach((c, idx) => {
+        const x = 55 + idx * 78;
+        const h = Math.round((c.count / maxVal) * 130);
+        const y = 170 - h;
+        bars += `
+          <rect x="${x}" y="${y}" width="42" height="${h}" rx="8" fill="url(#barGrad)" />
+          <text x="${x + 21}" y="${y - 6}" text-anchor="middle" font-size="11" font-weight="700" fill="currentColor">${c.count}</text>
+          <text x="${x + 21}" y="190" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.75">${c.label}</text>`;
+      });
+      areaSvg.innerHTML = `<defs><linearGradient id="barGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0284c7"/><stop offset="100%" stop-color="#10b981"/></linearGradient></defs>${bars}`;
+
+      // Line chart for Simulados
+      const simSvg = document.getElementById("simChart");
+      const pts = state.simulados.map((s, idx) => {
+        const x = state.simulados.length === 1 ? 230 : 45 + (idx * (380 / Math.max(1, state.simulados.length - 1)));
+        const y = 170 - Math.round((s.score / 60) * 140);
+        return { x, y, score: s.score };
+      });
+      const poly = pts.map(p => `${p.x},${p.y}`).join(" ");
+      let lineHtml = `
+        <line x1="36" y1="58" x2="440" y2="58" stroke="#10b981" stroke-dasharray="4 4" opacity="0.6" />
+        <text x="438" y="53" text-anchor="end" font-size="10" fill="#10b981" font-weight="700">Meta ENARE (48/60)</text>
+        <line x1="36" y1="170" x2="440" y2="170" stroke="rgba(120,140,160,0.3)" />`;
+      if (pts.length > 1) {
+        lineHtml += `<polyline fill="none" stroke="#059669" stroke-width="3" points="${poly}" />`;
+      }
+      pts.forEach(p => {
+        lineHtml += `<circle cx="${p.x}" cy="${p.y}" r="5" fill="#0284c7" /><text x="${p.x}" y="${p.y - 9}" text-anchor="middle" font-size="11" font-weight="700" fill="currentColor">${p.score}</text>`;
+      });
+      simSvg.innerHTML = lineHtml;
+    }
+
+    /* INIT */
+    if (state.dark) document.body.classList.add("dark");
+    updateCountdown();
+    initWeekSelector();
+    renderSchedule();
+    renderQuiz();
+    renderSimulados();
+    renderCustomLinks();
+    renderFlashcard();
+    renderErrors();
+    renderEdital();
+    updateKPIs();
+    renderCharts();
+  </script>
+</body>
+</html>

@@ -911,13 +911,13 @@
         q: "(ENARE / Instituto AOCP) Paciente adulto internado na UTI por SDRA grave encontra-se em ventilação mecânica invasiva. De acordo com a estratégia de ventilação protetora recomendada pelas Diretrizes Brasileiras de Ventilação Mecânica, qual deve ser o volume corrente (VC) ajustado?",
         opts: [
           "A) 10 a 12 mL/kg de peso predito, mantendo pressão de platô abaixo de 40 cmH2O.",
-          "B) 4 a 6 mL/kg de peso predito, mantendo pressão de platô ≤ 30 cmH2O e driving pressure < 15 cmH2O.",
+          "B) 4 a 6 mL/kg de peso predito, mantendo pressão de platô <= 30 cmH2O e driving pressure < 15 cmH2O.",
           "C) 8 a 10 mL/kg de peso real, com PEEP fixa em 5 cmH2O.",
           "D) 3 a 4 mL/kg de peso real, independentemente da pressão de platô.",
           "E) 8 mL/kg de peso predito, priorizando frequência respiratória abaixo de 10 irpm."
         ],
         ans: 1,
-        exp: "Na SDRA, a ventilação protetora utiliza baixo volume corrente (4 a 6 mL/kg de peso predito), pressão de platô ≤ 30 cmH2O e pressão de distensão (driving pressure) < 15 cmH2O para evitar volutrauma e barotrauma."
+        exp: "Na SDRA, a ventilação protetora utiliza baixo volume corrente (4 a 6 mL/kg de peso predito), pressão de platô <= 30 cmH2O e pressão de distensão (driving pressure) < 15 cmH2O para evitar volutrauma e barotrauma."
       },
       {
         area: "Neurofuncional",
@@ -977,7 +977,7 @@
           "E) Corrida em esteira a 6 METs no 2º dia"
         ],
         ans: 1,
-        exp: "Na Fase I intra-hospitalar, a intensidade deve ser leve (2 a 4 METs), elevando a frequência cardíaca em até 20 bpm acima do repouso (ou até 30 bpm em pós-operatório) com percepção de esforço Borg 11–13."
+        exp: "Na Fase I intra-hospitalar, a intensidade deve ser leve (2 a 4 METs), elevando a frequência cardíaca em até 20 bpm acima do repouso (ou até 30 bpm em pós-operatório) com percepção de esforço Borg 11-13."
       },
       {
         area: "Pediatria & Neo",
@@ -1005,8 +1005,8 @@
     let quizAnswered = false;
 
     const FLASHCARDS = [
-      { area: "Respiratória & UTI", q: "Quais são os 3 critérios gasométricos da Acidose Respiratória Descompensada?", a: "pH < 7,35 + PaCO₂ > 45 mmHg + HCO₃⁻ normal (22–26 mEq/L)." },
-      { area: "Respiratória & UTI", q: "Qual a fórmula da Driving Pressure (Pressão de Distensão) na Ventilação Mecânica?", a: "Driving Pressure = Pressão de Platô (Pplat) − PEEP. Deve ser mantida < 15 cmH₂O." },
+      { area: "Respiratória & UTI", q: "Quais são os 3 critérios gasométricos da Acidose Respiratória Descompensada?", a: "pH < 7,35 + PaCO2 > 45 mmHg + HCO3 normal (22-26 mEq/L)." },
+      { area: "Respiratória & UTI", q: "Qual a fórmula da Driving Pressure (Pressão de Distensão) na Ventilação Mecânica?", a: "Driving Pressure = Pressão de Platô (Pplat) - PEEP. Deve ser mantida < 15 cmH2O." },
       { area: "Neurofuncional", q: "O que avalia o Índice de Barthel e qual sua pontuação máxima?", a: "Avalia independência funcional nas Atividades Básicas de Vida Diária (ABVDs). Pontuação de 0 a 100 pontos." },
       { area: "Neurofuncional", q: "Qual a diferença entre Escala de Glasgow atualizada e resposta pupilar (Glasgow-P)?", a: "A pontuação ocular + verbal + motora (3 a 15) subtrai os pontos de reatividade pupilar (0, 1 ou 2), variando de 1 a 15." },
       { area: "Traumato-Ortopedia", q: "Quais músculos compõem o Manguito Rotador?", a: "Supraespinal, Infraespinal, Redondo Menor e Subescapular (SITS)." },
@@ -1028,8 +1028,8 @@
       { area: "Fisioterapia Traumato-Ortopédica e Reumatológica", topics: ["Avaliação Postural, Goniometria e Testes Especiais", "Lesões de Ombro, Joelho, Tornozelo e Coluna", "Fraturas, Artroplastias e Amputações", "Doenças Reumáticas (OA, AR, Espondilite)", "Eletrotermofototerapia e Cinesioterapia"] },
       { area: "Fisioterapia em Saúde da Mulher e Uroginecologia", topics: ["Anatomia do Assoalho Pélvico e Incontinências", "Fisioterapia na Gestação, Parto e Puerpério", "Fisioterapia Oncológica (Mama e Pélvica)"] },
       { area: "Fisioterapia Cardiovascular", topics: ["Fisiologia Cardiovascular e Eletrocardiograma Básico", "Reabilitação Cardíaca Fases I, II, III e IV", "Pós-Operatório de Cirurgia Cardíaca"] },
-      { area: "Fisioterapia em Pediatria e Neonatologia", topics: ["Desenvolvimento Neuropsicomotor (DNPM) e Reflexos", "Paralisia Cerebral e Mielomeningocele", "Ventilação Mecânica Neonatal e Pediátrica"] },
-      { area: "Saúde Pública e Legislação do SUS", topics: ["Constituição Federal (Arts. 196–200) e História do SUS", "Lei 8.080/1990 e Lei 8.142/1990", "Decreto 7.508/2011, PNAB e Redes de Atenção"] },
+      { area: "Fisioterapia em Pediatria e Neonatologia", topics: ["Desenvolvimento Neuropsicomotor (DNPM) e Reflexos", "Paralisia Cerebral e Mielomeningocele", "Ventilação Mecânica Neonatal e Pediat Básica"] },
+      { area: "Saúde Pública e Legislação do SUS", topics: ["Constituição Federal (Arts. 196-200) e História do SUS", "Lei 8.080/1990 e Lei 8.142/1990", "Decreto 7.508/2011, PNAB e Redes de Atenção"] },
       { area: "Ética, Deontologia e Legislação Profissional", topics: ["Decreto-Lei 938/1969 e Lei 8.856/1994 (30h)", "Resolução COFFITO 424/2013 (Código de Ética)", "CIF e Diagnóstico Fisioterapêutico"] },
       { area: "Língua Portuguesa (Foco ENARE / AOCP)", topics: ["Compreensão e Interpretação de Textos", "Sintaxe, Concordância Verbal/Nominal e Regência", "Crase, Pontuação e Coesão Textual"] }
     ];
@@ -1176,7 +1176,7 @@
       html += `
         <div class="day-block" style="border-left:4px solid var(--emerald);">
           <div class="day-header"><span class="day-name" style="color:var(--emerald);">Sábado — Simulado ENARE (60 questões)</span><span class="channel-badge">Revisão Semanal</span></div>
-          <p style="font-size:13px; color:var(--text-muted); margin-bottom:8px;">Resolva 40 questões específicas + 10 SUS + 10 Português e registre sua nota na aba Questões &amp; Simulados.</p>
+          <p style="font-size:13px; color:var(--text-muted); margin-bottom:8px;">Resolva 40 questões específicas + 10 SUS + 10 Português e registre sua nota na aba Questões & Simulados.</p>
           <a class="yt-link" href="https://www.youtube.com/results?search_query=Profa+Mara+Ribeiro+Resolucao+Questoes+ENARE" target="_blank" rel="noopener noreferrer">Abrir Correções Profa. Mara Ribeiro ↗</a>
         </div>
         <div class="day-block">
@@ -1309,8 +1309,7 @@ COMENTARIO: [explicação]`;
       const blocks = raw.split(/PERGUNTA:/i).slice(1);
       let added = 0;
       blocks.forEach(b => {
-        const lines = b.split("
-").map(l => l.trim()).filter(Boolean);
+        const lines = b.split("\n").map(l => l.trim()).filter(Boolean);
         const qText = lines[0];
         const opts = lines.filter(l => /^[A-E]\)/i.test(l));
         const gabLine = lines.find(l => /^GABARITO:/i.test(l));
@@ -1524,7 +1523,6 @@ COMENTARIO: [explicação]`;
     }
 
     function renderCharts() {
-      // Bar chart by macro area
       const cats = [
         { label: "Resp/UTI", count: 0 },
         { label: "Neuro", count: 0 },
@@ -1556,7 +1554,6 @@ COMENTARIO: [explicação]`;
       });
       areaSvg.innerHTML = `<defs><linearGradient id="barGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0284c7"/><stop offset="100%" stop-color="#10b981"/></linearGradient></defs>${bars}`;
 
-      // Line chart for Simulados
       const simSvg = document.getElementById("simChart");
       const pts = state.simulados.map((s, idx) => {
         const x = state.simulados.length === 1 ? 230 : 45 + (idx * (380 / Math.max(1, state.simulados.length - 1)));
